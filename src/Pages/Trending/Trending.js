@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import SingleContent from '../../components/SingleContent/SingleContent';
 import "./Trending.css"
 import CustomPagination from '../../components/Pagination/CustomPagination';
@@ -9,18 +9,16 @@ const Trending = () => {
     const [page, setPage] = useState(1)
     const [content, setContent] = useState([]);
 
-    const fetchTrending = async () => {
+    const fetchTrending = useCallback(async () => {
         const { data } = await axios.get(
             `https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}&page=${page}`
         );
-
-        console.log(data.results);
         setContent(data.results);
-    };
+    }, [page]);
 
     useEffect(() => {
         fetchTrending();
-    }, [page])
+    }, [fetchTrending])
 
 
     return (
