@@ -1,39 +1,229 @@
 .media {
-    display: flex;
-    flex-direction: column;
-    width: 200px;
-    padding: 5px;
-    margin: 5px 0;
-    background-color: #282c34;
-    border-radius: 10px;
-    position: relative;
-    font-family: "Benne", sans-serif;
+  display: flex;
+  flex-direction: column;
+  width: 160px;
+  padding: 0;
+  margin: 0;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  font-family: var(--font-sans);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--duration-normal) var(--ease-out-expo),
+    box-shadow var(--duration-normal) ease,
+    border-color var(--duration-fast) ease;
+  cursor: pointer;
 }
+
+/* Bento grid: cards fill their cell */
+.bentoGrid .media {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  min-height: 0;
+}
+
+/* Bento large: poster-dominant with overlay */
+.bentoGrid .media.bento--large {
+  flex-direction: column;
+}
+
+.bentoGrid .media.bento--large .media__posterWrap {
+  flex: 1;
+  min-height: 0;
+  aspect-ratio: auto;
+}
+
+.bentoGrid .media.bento--large .media__info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+  margin: 0;
+}
+
+.bentoGrid .media.bento--large .title {
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  -webkit-line-clamp: 2;
+}
+
+/* Bento medium: same overlay treatment, taller poster */
+.bentoGrid .media.bento--medium {
+  flex-direction: column;
+}
+
+.bentoGrid .media.bento--medium .media__posterWrap {
+  flex: 1;
+  min-height: 0;
+  aspect-ratio: auto;
+}
+
+.bentoGrid .media.bento--medium .media__info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+  margin: 0;
+}
+
+.bentoGrid .media.bento--medium .title {
+  font-size: 0.95rem;
+  -webkit-line-clamp: 2;
+}
+
+/* Bento small: fill cell with overlay */
+.bentoGrid .media.bento--small .media__posterWrap {
+  flex: 1;
+  min-height: 0;
+  aspect-ratio: auto;
+}
+
+.bentoGrid .media.bento--small .media__info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+  margin: 0;
+}
+
+.bentoGrid .media.bento--small .title {
+  font-size: 0.85rem;
+  -webkit-line-clamp: 2;
+}
+
 .media:hover {
-    background-color: white;
-    color: black;
-}  
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.media:active {
+  transform: translateY(-3px);
+  transition-duration: var(--duration-fast);
+}
+
+.media:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
 
 @media (max-width: 550px) {
-    .media {
-        width: 46%;
-    }
+  .media {
+    width: 46%;
+    min-width: 0;
+  }
+}
+
+.media__posterWrap {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  background: var(--bg-elevated);
+}
+
+.media__posterWrap .poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  display: block;
+  transition: transform var(--duration-slow) var(--ease-out-expo);
+}
+
+.media:hover .media__posterWrap .poster {
+  transform: scale(1.08);
 }
 
 .poster {
-    border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  display: block;
+}
+
+.media__badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px 8px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.75);
+  color: var(--text-primary);
+  backdrop-filter: blur(4px);
+  transition: transform var(--duration-fast) ease;
+  z-index: 1;
+  letter-spacing: 0.02em;
+}
+
+.media:hover .media__badge {
+  transform: scale(1.05);
+}
+
+.media__badge--high {
+  color: var(--rating-high);
+}
+
+.media__badge--mid {
+  color: var(--rating-mid);
+}
+
+.media__badge--low {
+  color: var(--rating-low);
+}
+
+.media__info {
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .title {
-    width: 100%;
-    text-align: center;
-    font-size: 17px;
-    padding: 8px 0;
-}  
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  letter-spacing: -0.02em;
+}
 
 .subTitle {
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 3px;
-    padding: 0 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  gap: 8px;
+  letter-spacing: 0.02em;
+}
+
+.subTitle .subTitle {
+  padding: 0;
+}
+
+.media__type {
+  flex-shrink: 0;
+}
+
+.media__date {
+  color: var(--text-muted);
 }

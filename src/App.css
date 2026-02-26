@@ -1,35 +1,121 @@
-*{
-  scroll-behavior: smooth;
-}
-
-.app{
+/* Layout: sidebar + content area */
+.appLayout {
   min-height: 100vh;
-  background-color: #0C4271;
-  color: white;
-  padding-top: 130px;
-  padding-bottom: 70px;
+  background: var(--bg-base);
 }
 
-@media(max-width:700px){
-  .app{
-    padding-top: 70px;
+.appContent {
+  margin-left: var(--sidebar-width);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1024px) {
+  .appContent {
+    margin-left: 0;
   }
 }
 
-.pageTitle{
-  text-transform: uppercase;
-  display: flex;
-  justify-content: center;
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 2vw;
-  padding: 4px;
-  border-radius: 50px;
-  color:white;
+.app {
+  min-height: 100vh;
+  background: var(--bg-base);
+  padding-top: calc(var(--header-height) + 24px);
+  padding-bottom: 48px;
+  flex: 1;
 }
 
+.app > div {
+  animation: fadeIn var(--duration-normal) var(--ease-out-expo) both;
+}
 
-@media(max-width:1000px){
-  .pageTitle{
-    font-size: 6.4vw;
+.pageLayout {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+@media (max-width: 900px) {
+  .pageLayout {
+    padding: 0 24px;
+  }
+}
+
+@media (max-width: 700px) {
+  .app {
+    padding-top: 20px;
+    padding-bottom: 32px;
+  }
+
+  .pageLayout {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app {
+    padding-top: 16px;
+    padding-bottom: 24px;
+  }
+
+  .pageLayout {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  .pageLayout {
+    padding: 0 12px;
+  }
+}
+
+.pageTitle {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--text-primary);
+  margin: 0 auto 2.5rem;
+  padding: 0 0 1rem;
+  max-width: 28ch;
+  border-bottom: 2px solid var(--accent-muted);
+  animation: fadeInUp var(--duration-normal) var(--ease-out-expo) both;
+}
+
+.pageLayout .pageTitle {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.pageLayout .bentoGrid,
+.pageLayout .trending.bentoGrid {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media (max-width: 1000px) {
+  .pageTitle {
+    margin-bottom: 2.75rem;
+    padding-bottom: 0.875rem;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .pageTitle {
+    margin-bottom: 2rem;
+    padding-bottom: 0.75rem;
+    font-size: clamp(1.35rem, 5vw, 1.75rem);
+    max-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app > div,
+  .pageTitle {
+    animation: none;
   }
 }

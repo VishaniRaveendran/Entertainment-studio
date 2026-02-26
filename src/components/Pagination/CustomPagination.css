@@ -1,0 +1,74 @@
+.paginationWrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 24px;
+  padding: 0 16px;
+}
+
+.paginationWrap .MuiPagination-root {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+}
+
+.paginationWrap .MuiPagination-item {
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+
+.paginationWrap .MuiPagination-item.Mui-selected {
+  background: var(--accent-muted) !important;
+  color: var(--accent) !important;
+  border: 1px solid rgba(0, 212, 255, 0.4);
+}
+
+.paginationWrap .MuiPagination-item:hover:not(.Mui-disabled) {
+  background: var(--bg-card) !important;
+  color: var(--text-primary);
+}
+
+.paginationWrap .MuiPaginationItem-root {
+  border-radius: var(--radius-md) !important;
+  transition: background var(--duration-fast) ease,
+    color var(--duration-fast) ease, transform var(--duration-fast) ease !important;
+}
+
+.paginationWrap .MuiPagination-item:hover:not(.Mui-disabled) {
+  transform: scale(1.08);
+}
+
+.paginationWrap .MuiPagination-item:active:not(.Mui-disabled) {
+  transform: scale(0.95);
+}
+
+@media (max-width: 600px) {
+  .paginationWrap {
+    margin-top: 32px;
+    margin-bottom: 20px;
+    padding: 0 12px;
+  }
+
+  .paginationWrap .MuiPaginationItem-root {
+    min-width: 36px !important;
+    height: 36px !important;
+    font-size: 0.875rem !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .paginationWrap {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    padding: 0 8px;
+  }
+
+  .paginationWrap .MuiPaginationItem-root {
+    min-width: 32px !important;
+    height: 32px !important;
+    font-size: 0.8125rem !important;
+  }
+}

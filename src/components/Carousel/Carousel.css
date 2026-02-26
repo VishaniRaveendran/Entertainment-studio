@@ -1,12 +1,113 @@
 .carouselItem {
-    display: flex;
-    flex-direction: column;
-    object-fit: contain;
-    padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 10px;
+  margin: 0 10px;
+  min-width: 100px;
+  width: 100px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.carouselItem--clickable {
+  cursor: pointer;
+  outline: none;
+}
+
+.carouselItem--clickable:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-md);
 }
 
 .carouselItem__img {
-    border-radius: 10px;
-    margin-bottom: 5px;
-    box-shadow: 0px 0px 5px black;
+  width: 100px;
+  height: 100px;
+  border-radius: var(--radius-md);
+  margin-bottom: 8px;
+  box-shadow: var(--shadow-sm);
+  object-fit: cover;
+  flex-shrink: 0;
+  transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s ease;
+}
+
+.carouselItem:hover .carouselItem__img {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-md), 0 0 24px var(--accent-muted);
+}
+
+.carouselItem__txt {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-align: center;
+  width: 100%;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+/* Override react-alice-carousel: space between actor items */
+.alice-carousel__stage-item {
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+/* At 1028px+ (e.g. popup on large screens): more space between actor cards */
+@media (min-width: 1028px) {
+  .carouselItem {
+    margin: 0 18px;
+    padding: 10px 14px;
+  }
+
+  .alice-carousel__stage-item {
+    padding: 0 14px;
+  }
+}
+
+.alice-carousel__prev-btn,
+.alice-carousel__next-btn {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .carouselItem {
+    padding: 6px 8px;
+    margin: 0 6px;
+    min-width: 88px;
+    width: 88px;
+  }
+
+  .carouselItem__img {
+    width: 76px;
+    height: 76px;
+  }
+
+  .carouselItem__txt {
+    font-size: 0.75rem;
+    max-width: 76px;
+  }
+}
+
+@media (max-width: 380px) {
+  .carouselItem {
+    padding: 4px 6px;
+    margin: 0 4px;
+    min-width: 80px;
+    width: 80px;
+  }
+
+  .carouselItem__img {
+    width: 68px;
+    height: 68px;
+  }
+
+  .carouselItem__txt {
+    font-size: 0.7rem;
+    max-width: 68px;
+  }
 }

@@ -1,91 +1,292 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
+.contentModalTrigger {
+  cursor: pointer;
+  display: block;
+  outline: none;
+  transition: transform 0.2s ease;
+}
 
+.contentModalTrigger:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Close button: top-right of modal */
+.ContentModal__closeBtn {
+  position: absolute !important;
+  top: 8px !important;
+  right: 8px !important;
+  z-index: 10;
+  color: var(--text-secondary) !important;
+  padding: 8px !important;
+  transition: color 0.2s ease, background 0.2s ease !important;
+}
+
+.ContentModal__closeBtn:hover {
+  color: var(--text-primary) !important;
+  background: var(--bg-card-hover) !important;
+}
+
+.ContentModal__closeBtn:focus-visible {
+  outline: 2px solid var(--accent) !important;
+  outline-offset: 2px;
+}
+
+/* Modal paper override via makeStyles is in JS; inner content uses these classes */
 .ContentModal__landscape {
-    object-fit: contain;
-    border-radius: 10px;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+  background: var(--bg-elevated);
 }
 
 .ContentModal__portrait {
-    display: none;
-    object-fit: contain;
-    border-radius: 10px;
-}
-
-.tagline {
-    padding-bottom: 10px;
-    align-self: center;
+  display: none;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  flex-shrink: 0;
+  background: var(--bg-elevated);
 }
 
 .ContentModal {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    width: 100%;
-    overflow-y: scroll;
-    scrollbar-width: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+  font-family: var(--font-sans);
 }
 
 .ContentModal::-webkit-scrollbar {
-    display: none;
+  width: 6px;
+}
+
+.ContentModal::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: var(--radius-full);
 }
 
 .ContentModal__about {
-    padding: 10px;
-    width: 95%;
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-    font-family: "Roboto", sans-serif;
-    justify-content: space-evenly;
-    font-weight: 300;
+  padding: 20px 16px 24px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-weight: 400;
+  min-height: 0;
+}
+
+.ContentModal__header {
+  flex-shrink: 0;
 }
 
 .ContentModal__title {
-    height: 12%;
-    font-size: 5vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 4vw, 1.75rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
+  margin: 0 0 8px;
+  line-height: 1.3;
+  display: block;
+  letter-spacing: -0.02em;
+}
+
+.ContentModal__year {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.ContentModal__tagline {
+  margin: 0;
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.ContentModal__descriptionWrap {
+  flex: 1;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
 }
 
 .ContentModal__description {
-    display: flex;
-    height: 40%;
-    overflow-y: scroll;
-    padding: 15px;
-    border-radius: 20px;
-    scrollbar-width: thin; /* Firefox */
-    box-shadow: inset 0 0 5px #000000;
-    text-align: justify;
+  overflow-y: auto;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  text-align: justify;
+  flex: 1;
+  min-height: 0;
 }
 
 .ContentModal__description::-webkit-scrollbar {
-    display: none;
+  width: 6px;
+}
+
+.ContentModal__description::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: var(--radius-full);
+}
+
+.ContentModal__carouselWrap {
+  flex-shrink: 0;
+}
+
+.ContentModal__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.ContentModal__trailerBtn {
+  background: var(--accent) !important;
+  color: var(--bg-base) !important;
+  font-family: var(--font-display) !important;
+  font-weight: 700 !important;
+  border-radius: var(--radius-md) !important;
+  padding: 12px 24px !important;
+  transition: background var(--duration-fast) ease, transform 0.15s ease,
+    box-shadow var(--duration-fast) ease !important;
+  box-shadow: 0 0 24px var(--accent-muted) !important;
+}
+
+.ContentModal__trailerBtn:hover {
+  background: var(--accent-hover) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 28px var(--accent-muted) !important;
+}
+
+.ContentModal__listBtn,
+.ContentModal__detailBtn {
+  border-color: var(--border-strong) !important;
+  color: var(--text-primary) !important;
+}
+
+.ContentModal__listBtn:hover,
+.ContentModal__detailBtn:hover {
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
 }
 
 @media (min-width: 835px) {
-    .ContentModal__landscape {
-        display: none;
-    }
-    .ContentModal__portrait {
-        display: flex;
-        width: 38%;
-    }
-    .ContentModal {
-        flex-direction: row;
-        justify-content: space-around;
-        padding: 10px 0;
-    }
-    .ContentModal__about {
-        width: 58%;
-        padding: 0;
-        height: 100%;
-    }
-    .ContentModal__title {
-        font-size: 3.5vw;
-    }
-    .ContentModal__description {
-        font-size: 22px;
-    }
+  .ContentModal__landscape {
+    display: none;
+  }
+
+  .ContentModal__portrait {
+    display: block;
+    width: 36%;
+    max-width: 320px;
+    aspect-ratio: 2 / 3;
+    flex-shrink: 0;
+  }
+
+  .ContentModal {
+    flex-direction: row;
+    padding: 0;
+    gap: 28px;
+  }
+
+  .ContentModal__about {
+    width: 60%;
+    padding: 0 0 0 8px;
+    gap: 24px;
+    justify-content: flex-start;
+  }
+
+  .ContentModal__header {
+    margin-bottom: 0;
+  }
+
+  .ContentModal__title {
+    font-size: 1.75rem;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+  .ContentModal__tagline {
+    text-align: left;
+  }
+
+  .ContentModal__descriptionWrap {
+    min-height: 120px;
+  }
+
+  .ContentModal__description {
+    font-size: 1rem;
+  }
+}
+
+/* Responsive modal: tablet */
+@media (max-width: 600px) {
+  .ContentModal__about {
+    padding: 16px 12px 20px;
+    gap: 18px;
+  }
+
+  .ContentModal__descriptionWrap {
+    min-height: 100px;
+  }
+
+  .ContentModal__description {
+    padding: 14px;
+  }
+}
+
+/* Responsive modal: small phones */
+@media (max-width: 480px) {
+  .ContentModal__landscape {
+    height: 160px;
+  }
+
+  .ContentModal__about {
+    padding: 12px 10px 16px;
+    gap: 14px;
+  }
+
+  .ContentModal__title {
+    font-size: 1.25rem;
+  }
+
+  .ContentModal__descriptionWrap {
+    min-height: 80px;
+  }
+
+  .ContentModal__description {
+    padding: 12px;
+    font-size: 0.875rem;
+  }
+
+  .ContentModal__trailerBtn {
+    padding: 10px 20px !important;
+    font-size: 0.875rem !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .ContentModal__about {
+    padding: 10px 8px 14px;
+    gap: 12px;
+  }
+
+  .ContentModal__title {
+    font-size: 1.15rem;
+  }
 }

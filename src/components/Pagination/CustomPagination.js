@@ -1,36 +1,32 @@
-import React from 'react'
+import React from 'react';
 import Pagination from '@material-ui/lab/Pagination';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+import './CustomPagination.css';
 
 const darkTheme = createMuiTheme({
-    palette: {
-        type: 'dark',
-    },
-})
+  palette: {
+    type: "dark",
+    primary: { main: "#00d4ff" },
+  },
+});
+
 const CustomPagination = ({ setPage, numOfPages = 10 }) => {
-
-    const handlePageChange = (page) => {
+    const handlePageChange = (e, page) => {
         setPage(page);
-        window.scroll(0, 0);
-    }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
     return (
-        <div
-            style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                marginTop: 10,
-            }}>
-
+        <div className="paginationWrap">
             <ThemeProvider theme={darkTheme}>
-                <Pagination 
-                count={numOfPages} 
-                onChange={(e) => handlePageChange(e.target.textContent)} 
-                hideNextButton
-                hidePrevButton
-                color="primary"
+                <Pagination
+                    count={Math.min(numOfPages || 1, 500)}
+                    onChange={handlePageChange}
+                    color="primary"
+                    size="medium"
+                    showFirstButton
+                    showLastButton
                 />
-
             </ThemeProvider>
         </div>
     );
