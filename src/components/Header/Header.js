@@ -31,7 +31,11 @@ const Header = () => {
 
   useEffect(() => {
     const handler = (e) => {
-      if (e.key === "/" && document.activeElement?.tagName !== "INPUT" && document.activeElement?.tagName !== "TEXTAREA") {
+      if (
+        e.key === "/" &&
+        document.activeElement?.tagName !== "INPUT" &&
+        document.activeElement?.tagName !== "TEXTAREA"
+      ) {
         e.preventDefault();
         searchInputRef.current?.focus();
       }
@@ -77,7 +81,9 @@ const Header = () => {
               <button
                 key={item.path}
                 type="button"
-                className={`header__navItem ${isActive ? "header__navItem--active" : ""}`}
+                className={`header__navItem ${
+                  isActive ? "header__navItem--active" : ""
+                }`}
                 onClick={() => history.push(item.path)}
                 aria-current={isActive ? "page" : undefined}
               >
@@ -89,7 +95,9 @@ const Header = () => {
         <IconButton
           onClick={toggleTheme}
           className="header__themeBtn"
-          aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+          aria-label={
+            theme === "dark" ? "Switch to light theme" : "Switch to dark theme"
+          }
           size="small"
         >
           {theme === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}

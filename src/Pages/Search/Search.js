@@ -52,7 +52,9 @@ const Search = () => {
       const { data } = await axios.get(
         `https://api.themoviedb.org/3/search/${type ? "tv" : "movie"}?api_key=${
           process.env.REACT_APP_API_KEY
-        }&language=en-US&query=${encodeURIComponent(query)}&page=${page}&include_adult=false`
+        }&language=en-US&query=${encodeURIComponent(
+          query
+        )}&page=${page}&include_adult=false`
       );
       setContent(data.results || []);
       setNumOfPages(data.total_pages || 0);
@@ -174,7 +176,9 @@ const Search = () => {
             ))}
           {isSearchResults && content.length === 0 && (
             <p className="searchEmpty">
-              {type ? "No TV series found. Try another search." : "No movies found. Try another search."}
+              {type
+                ? "No TV series found. Try another search."
+                : "No movies found. Try another search."}
             </p>
           )}
         </div>

@@ -81,7 +81,10 @@ export default function TransitionsModal({ children, media_type, id }) {
 
   useEffect(() => {
     if (!open) return;
-    const t = setTimeout(() => closeBtnRef.current?.focus({ preventScroll: true }), 100);
+    const t = setTimeout(
+      () => closeBtnRef.current?.focus({ preventScroll: true }),
+      100
+    );
     return () => clearTimeout(t);
   }, [open]);
 
@@ -237,7 +240,9 @@ export default function TransitionsModal({ children, media_type, id }) {
                     )}
                     <Button
                       variant="outlined"
-                      startIcon={inList ? <PlaylistAddCheckIcon /> : <PlaylistAddIcon />}
+                      startIcon={
+                        inList ? <PlaylistAddCheckIcon /> : <PlaylistAddIcon />
+                      }
                       onClick={addToWatchlist}
                       className="ContentModal__listBtn"
                       size="small"
